@@ -27,6 +27,16 @@ public class OperacionEgresoTest {
 	}
 	
 	@Test
+	
+	public void testOperacionVacia() {
+		operacionPrueba.removeFirstItem();
+		operacionPrueba.removeFirstItem();
+		
+		Assert.assertEquals(operacionPrueba.calcularValor(),0.0,0);
+	}
+	
+	
+	@Test
 	public void testCerradaNoCambiaPrecio() {
 		operacionPrueba.cerrarOperacion();
 		artPrueba.setValor(10.0);
@@ -36,7 +46,7 @@ public class OperacionEgresoTest {
 	}
 		
 	@Test
-	public void testItemValorInvalido() {
+	public void testItemValorFijado() {
 		double valorActual = serPrueba.getValor();
 		serPrueba.fijarValor();
 		serPrueba.setValor(13.5);
@@ -48,13 +58,25 @@ public class OperacionEgresoTest {
 		artPrueba.setValor(0.0);
 		Assert.assertNotEquals(0.0, artPrueba.getValor(), 0);
 	}
-		
 	
 	@Test
 	public void testAbiertaCambiaPrecio() {
 		artPrueba.setValor(10.0);
 		Assert.assertEquals(operacionPrueba.calcularValor(),35.5,0);
 	}
+	
+	@Test
+	public void testOperacionVaciaNoGeneraRemito() {
+		
+		operacionPrueba.removeFirstItem();
+		operacionPrueba.removeFirstItem();
+		
+		try {
+			 operacionPrueba.generarRemito();
+		  } catch (OperacionSinRemitoException e) {
+		    }	
+	}
+	
 	
 	@Test
 	public void testOperacionNoGeneraRemito() {

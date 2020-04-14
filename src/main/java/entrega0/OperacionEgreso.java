@@ -22,6 +22,10 @@ public class OperacionEgreso {
 		}
 	}
 	
+	public void removeFirstItem() {
+			listaObjetos.remove(0); //remueve el primer elemento
+	}
+	
 	public Double calcularValor() {	
 		return listaObjetos.stream().map(item -> item.getValor()).reduce(0.0,(a,b)-> a + b);
 	}
